@@ -1,12 +1,9 @@
 const frase = "Hola mundo";
 const velocidad = 100;
 const pausa = 1500;
-
 let j = 0;
 let escribiendo = true;
-
 const titulo = document.getElementById("titulo");
-
 function typeLoop() {
   if (escribiendo) {
     if (j < frase.length) {
@@ -32,7 +29,6 @@ function typeLoop() {
     }
   }
 }
-
 typeLoop();
 
 const datos = {
@@ -172,21 +168,6 @@ var edad = 30;</code></pre>
 function mostrar(id) {
   const div = document.getElementById("contenido");
   div.innerHTML = datos[id];
+  div.style.display = "block";
+  div.scrollIntoView({ behavior: "smooth", block: "start" });
 }
-
-const botones = document.getElementsByClassName("btn-primary");
-Array.from(botones).forEach((e) => {
-  e.addEventListener("click", function () {
-    const seccionDestino = document.getElementById("contenido");
-    if (seccionDestino) {
-      seccionDestino.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
-});
-
-window.addEventListener("load", function () {
-  const seccionDestino = document.getElementById("contenido");
-  if (seccionDestino) {
-    seccionDestino.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-});
