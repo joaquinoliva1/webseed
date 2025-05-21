@@ -58,6 +58,7 @@ const datos = {
     <h2>Conclusión</h2>
     <p>HTML es el esqueleto de cualquier sitio web. Dominar sus conceptos clave permite construir páginas sólidas y preparadas para crecer con CSS y JavaScript. Como barista del código, cada etiqueta es un grano que aporta sabor a tu web.</p>
   </section>
+  <a class="btn btn-primary" onclick="mostrarmas(4)">Learn more</a>
 </article>
   `,
   2: `
@@ -116,6 +117,7 @@ const datos = {
     <h2>Conclusión</h2>
     <p>CSS transforma contenido crudo en una experiencia visual. Dominar sus fundamentos es como tener buen gusto en diseño: hace que todo se vea más atractivo, funcional y profesional. Si HTML es la base, CSS es el look que enamora.</p>
   </section>
+  <a class="btn btn-primary" href="learn-css.html">Learn more</a>
 </article>
   `,
   3: `
@@ -161,13 +163,161 @@ var edad = 30;</code></pre>
     <h2>Conclusión</h2>
     <p>JavaScript es el alma dinámica de la web. Aprender sus fundamentos es el primer paso para crear experiencias ricas e interactivas. No se trata solo de hacer cosas que se mueven, sino de pensar cómo mejorar la experiencia del usuario con lógica y creatividad.</p>
   </section>
+  <a class="btn btn-primary" href="learn-js.html">Learn more</a>
 </article>
   `,
 };
 
 function mostrar(id) {
-  const div = document.getElementById("contenido");
+  const div = document.getElementById("content");
   div.innerHTML = datos[id];
   div.style.display = "block";
   div.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  const navbar = document.querySelector(".navbar");
+  if (navbar) {
+    document.body.style.paddingTop = navbar.offsetHeight + "px";
+  }
+});
+
+(function () {
+  "use strict";
+
+  var registerFormElement = document.getElementById("registerFormElement");
+  var loginBtn = document.querySelector('[data-form="loginForm"]');
+  var registerBtn = document.querySelector('[data-form="registerForm"]');
+  var formSections = document.querySelectorAll(
+    ".dropdown-menu-form .form-section"
+  );
+
+  var navbarDropdownAuthBtn = document.getElementById("navbarDropdownAuth");
+  var dropdownMenu = document.querySelector(".dropdown-menu-form");
+  var isDropdownOpen = false;
+  function showForm(formIdToShow) {
+    formSections.forEach(function (section) {
+      if (section.id === formIdToShow) {
+        section.classList.add("active");
+      } else {
+        section.classList.remove("active");
+      }
+    });
+
+    loginBtn.classList.remove("active", "btn-primary");
+    loginBtn.classList.add("btn-outline-primary");
+    registerBtn.classList.remove("active", "btn-primary");
+    registerBtn.classList.add("btn-outline-primary");
+
+    if (formIdToShow === "loginForm") {
+      loginBtn.classList.add("active", "btn-primary");
+      loginBtn.classList.remove("btn-outline-primary");
+    } else if (formIdToShow === "registerForm") {
+      registerBtn.classList.add("active", "btn-primary");
+      registerBtn.classList.remove("btn-outline-primary");
+    }
+  }
+  loginBtn.addEventListener("click", function () {
+    showForm("loginForm");
+    if (
+      registerFormElement &&
+      registerFormElement.classList.contains("was-validated")
+    ) {
+      registerFormElement.classList.remove("was-validated");
+      registerFormElement.querySelectorAll(".form-control").forEach((input) => {
+        input.classList.remove("is-valid", "is-invalid");
+      });
+      registerFormElement
+        .querySelector("#termsCheck")
+        .classList.remove("is-valid", "is-invalid");
+    }
+  });
+  registerBtn.addEventListener("click", function () {
+    showForm("registerForm");
+  });
+  showForm("loginForm");
+  if (registerFormElement) {
+    registerFormElement.addEventListener(
+      "submit",
+      function (event) {
+        var password = document.getElementById("password");
+        var confirmPassword = document.getElementById("confirmPassword");
+        if (password.value !== confirmPassword.value) {
+          confirmPassword.setCustomValidity("Las contraseñas no coinciden.");
+        } else {
+          confirmPassword.setCustomValidity("");
+        }
+        if (!registerFormElement.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else {
+          event.preventDefault();
+          alert("Te registraste con exito.");
+          dropdownMenu.classList.remove("show-always");
+          navbarDropdownAuthBtn.setAttribute("aria-expanded", "false");
+          dropdownMenu.classList.remove("show");
+          isDropdownOpen = false;
+          registerFormElement.reset();
+          registerFormElement.classList.remove("was-validated");
+          registerFormElement
+            .querySelectorAll(".form-control")
+            .forEach((input) => {
+              input.classList.remove("is-valid", "is-invalid");
+            });
+          registerFormElement
+            .querySelector("#termsCheck")
+            .classList.remove("is-valid", "is-invalid");
+          showForm("loginForm");
+        }
+
+        registerFormElement.classList.add("was-validated");
+      },
+      false
+    );
+    document
+      .getElementById("password")
+      .addEventListener("input", validatePasswordMatch);
+    document
+      .getElementById("confirmPassword")
+      .addEventListener("input", validatePasswordMatch);
+
+    function validatePasswordMatch() {
+      var password = document.getElementById("password");
+      var confirmPassword = document.getElementById("confirmPassword");
+
+      if (confirmPassword.value === "") {
+        confirmPassword.setCustomValidity("");
+        confirmPassword.classList.remove("is-valid", "is-invalid");
+      } else if (password.value !== confirmPassword.value) {
+        confirmPassword.setCustomValidity("Las contraseñas no coinciden.");
+        confirmPassword.classList.remove("is-valid");
+        confirmPassword.classList.add("is-invalid");
+      } else {
+        confirmPassword.setCustomValidity("");
+        confirmPassword.classList.remove("is-invalid");
+        confirmPassword.classList.add("is-valid");
+      }
+    }
+  }
+  if (navbarDropdownAuthBtn && dropdownMenu) {
+    navbarDropdownAuthBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (!isDropdownOpen) {
+        dropdownMenu.classList.add("show-always");
+        navbarDropdownAuthBtn.setAttribute("aria-expanded", "true");
+        isDropdownOpen = true;
+      } else {
+        dropdownMenu.classList.remove("show-always");
+        navbarDropdownAuthBtn.setAttribute("aria-expanded", "false");
+        isDropdownOpen = false;
+      }
+    });
+  }
+  if (dropdownMenu) {
+    dropdownMenu.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  }
+})();
