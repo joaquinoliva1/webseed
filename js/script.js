@@ -54,11 +54,7 @@ const datos = {
     <h2>Importancia de la semántica</h2>
     <p>Usar etiquetas semánticas (como <code>&lt;article&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>) ayuda a organizar el contenido y facilita la accesibilidad y el SEO.</p>
   </section>
-  <section>
-    <h2>Conclusión</h2>
-    <p>HTML es el esqueleto de cualquier sitio web. Dominar sus conceptos clave permite construir páginas sólidas y preparadas para crecer con CSS y JavaScript. Como barista del código, cada etiqueta es un grano que aporta sabor a tu web.</p>
-  </section>
-  <a class="btn btn-primary" onclick="mostrarmas(4)">Learn more</a>
+  <p style="color: #5499c7; font-weight: bolder;">Para continuar con el curso de HTML deberá registrarse en este sitio.</p>
 </article>
   `,
   2: `
@@ -113,11 +109,7 @@ const datos = {
     </p>
     <img src="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Box_model/box-model.png" alt="Modelo de Caja CSS" style="width:100%; max-width:500px; display:block; margin: 20px auto;">
   </section>
-  <section>
-    <h2>Conclusión</h2>
-    <p>CSS transforma contenido crudo en una experiencia visual. Dominar sus fundamentos es como tener buen gusto en diseño: hace que todo se vea más atractivo, funcional y profesional. Si HTML es la base, CSS es el look que enamora.</p>
-  </section>
-  <a class="btn btn-primary" href="learn-css.html">Learn more</a>
+  <p style="color: #5499c7;font-weight: bolder;">Para continuar con el curso de CSS deberá registrarse en este sitio.</p>
 </article>
   `,
   3: `
@@ -159,11 +151,7 @@ var edad = 30;</code></pre>
     <pre><code>document.querySelector("h1").textContent = "Nuevo título";</code></pre>
     <p>Así se puede cambiar texto, estilos, clases, atributos y más.</p>
   </section>
-  <section>
-    <h2>Conclusión</h2>
-    <p>JavaScript es el alma dinámica de la web. Aprender sus fundamentos es el primer paso para crear experiencias ricas e interactivas. No se trata solo de hacer cosas que se mueven, sino de pensar cómo mejorar la experiencia del usuario con lógica y creatividad.</p>
-  </section>
-  <a class="btn btn-primary" href="learn-js.html">Learn more</a>
+  <p style="color: #5499c7;font-weight: bolder;">Para continuar con el curso de JavaScript deberá registrarse en este sitio.</p>
 </article>
   `,
 };
